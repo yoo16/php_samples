@@ -15,11 +15,13 @@ class ArrayMerge {
      * generateValues
      *
      * @param integer $count
+     * @param string $prefix
+     * @param integer $from_index
      * @return array
      */
-    function generateValues($count)
+    function generateValues($count, $prefix = 'test', $from_index = 1)
     {
-        for ($i = 1; $i <= $count; $i++) $values[$i] = "test{$i}";
+        for ($i = $from_index; $i <= $count + $from_index; $i++) $values[$i] = "{$prefix}{$i}";
         return $values;
     }
  
@@ -29,10 +31,10 @@ class ArrayMerge {
      * @param integer $count
      * @return array
      */
-    function generateValuesWithIndex($count)
+    function generateValuesWithIndex($count, $prefix = 'test')
     {
         for ($i = 1; $i <= $count; $i++) {
-            $values[++$this->index] = "test{$i}";
+            $values[++$this->index] = "{$prefix}{$i}";
         }
         return $values;
     }
@@ -69,6 +71,16 @@ $values1 = $array_merge->generateValues(10);
 $values2 = $array_merge->generateValues(10);
 $values = $values1 + $values2;
 $array_merge->display('$values1 + $values2(same index)', $values);
+
+$values = array_merge($values1, $values2);
+$array_merge->display('array_merge($values1, $values2) (same index)', $values);
+
+echo('-- Same Index, Diffrence value').PHP_EOL;
+//values1 + values2
+$values1 = $array_merge->generateValues(10, 'red');
+$values2 = $array_merge->generateValues(10, 'blue');
+$values = $values1 + $values2;
+$array_merge->display('$values1 + $values2(same index, diffrence value)', $values);
 
 $values = array_merge($values1, $values2);
 $array_merge->display('array_merge($values1, $values2) (same index)', $values);
