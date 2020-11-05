@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_POST['user']) {
+if (isset($_POST['user'])) {
     $user = $_POST['user'];
     if ($user['email'] == 'test' && $user['password'] = 'test') {
         $_SESSION['lesson']['user'] = $user;
