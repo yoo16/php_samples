@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['lesson']['user'])) {
     $user = $_SESSION['lesson']['user'];
 } else {
-    header('Location: user.php');
+    header('Location: lesson3.php');
 }
 ?>
 <!DOCTYPE html>
