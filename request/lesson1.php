@@ -1,8 +1,3 @@
-<?php
-    if ($_GET) {
-        var_dump($_GET);
-    }
-?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -19,6 +14,10 @@
         <input type="text" name="email" value="">
         <button>GET送信</button>
     </form>
+    <?php if (isset($_GET['email'])): ?>
+    <h2 class="h2">Result</h2>
+    <?= $_GET['email'] ?>
+    <?php endif ?>
 </body>
 
 </html>

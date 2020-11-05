@@ -1,10 +1,12 @@
 <?php
-if ($_GET) {
-    $email = $_GET['email'];
-} else if ($_POST) {
-    $email = $_POST['email'];
+session_start();
+if ($_POST['user']) {
+    $user = $_POST['user'];
+    if ($user['email'] == 'test' && $user['password'] = 'test') {
+        $_SESSION['lesson']['user'] = $user;
+    }
+    header('Location: user.php');
 }
-// var_dump($_SERVER['REQUEST_METHOD']);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -16,28 +18,16 @@ if ($_GET) {
 </head>
 
 <body>
-    <h2>GET</h2>
-    <form action="lesson3.php" method="get">
-        メールアドレス
-        <input type="text" name="email" value="">
-        <button>GET送信</button>
-    </form>
-    <a href="?email=test">GETリクエスト</a>
-
-    <h2>POST</h2>
+    <h2 class="h2">ログイン</h2>
     <form action="lesson3.php" method="post">
-        メールアドレス
-        <input type="text" name="email" value="">
-        <button>POST送信</button>
+        <h2>メールアドレス</h2>
+        <input type="text" name="user[email]" value="">
+        <h2>パスワード</h2>
+        <input type="password" name="user[password]" value="">
+        <p>
+            <button>送信</button>
+        </p>
     </form>
-    <h3>メールアドレス</h3>
-    <?php
-    echo $email;
-    ?>
-    <h3>リクエストメソッド</h3>
-    <?php
-    echo $_SERVER['REQUEST_METHOD'];
-    ?>
 </body>
 
 </html>

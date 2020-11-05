@@ -1,11 +1,3 @@
-<?php
-if ($_GET) {
-    var_dump($_GET);
-} else if ($_POST) {
-    var_dump($_POST);
-}
-var_dump($_SERVER['REQUEST_METHOD']);
-?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -16,20 +8,23 @@ var_dump($_SERVER['REQUEST_METHOD']);
 </head>
 
 <body>
-    <h2>GET</h2>
-    <form action="lesson2.php" method="get">
-        メールアドレス
-        <input type="text" name="email" value="">
-        <button>GET送信</button>
-    </form>
-    <a href="?email=test">GETリクエスト</a>
-
-    <h2>POST</h2>
+    <h2>ログイン</h2>
     <form action="lesson2.php" method="post">
-        メールアドレス
+        <h2>メールアドレス</h2>
         <input type="text" name="email" value="">
-        <button>POST送信</button>
+        <h2>パスワード</h2>
+        <input type="password" name="password" value="">
+        <p>
+            <button>送信</button>
+        </p>
     </form>
+    <?php if ($_POST) : ?>
+        <h2 class="h2">Result</h2>
+        <h3>メールアドレス</h3>
+        <?= $_POST['email'] ?>
+        <h3>パスワード</h3>
+        <?= $_POST['password'] ?>
+    <?php endif ?>
 </body>
 
 </html>
