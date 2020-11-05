@@ -2,10 +2,10 @@
 session_start();
 if (isset($_POST['user'])) {
     $user = $_POST['user'];
-    if ($user['email'] == 'test' && $user['password'] = 'test') {
+    if ($user['email'] == 'test' && $user['password'] == 'test') {
         $_SESSION['lesson']['user'] = $user;
+        header('Location: user.php');
     }
-    header('Location: user.php');
 }
 ?>
 <!DOCTYPE html>
