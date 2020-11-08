@@ -19,7 +19,7 @@ if (isset($_POST['user'])) {
 
 <body>
     <h2 class="h2">ログイン</h2>
-    <form action="lesson3.php" method="post">
+    <form action="login.php" method="post">
         <h2>メールアドレス</h2>
         <input type="text" name="user[email]" value="">
         <h2>パスワード</h2>
