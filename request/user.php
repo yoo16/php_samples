@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['lesson']['user'])) {
     $user = $_SESSION['lesson']['user'];
 } else {
-    header('Location: lesson3.php');
+    header('Location: login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -16,6 +16,9 @@ if (isset($_SESSION['lesson']['user'])) {
 </head>
 
 <body>
+    <div>
+        <a href="logout.php">ログアウト</a>
+    </div>
     <h2 class="h2">ユーザページ</h2>
     <h3 class="">メールアドレス</h3>
     <p>
