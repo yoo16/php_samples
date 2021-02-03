@@ -9,7 +9,7 @@ $results = [1 => 'Win', 2 => 'Lose', 3 => 'Draw',];
 $result = 0;
 
 //じゃんけんの手のデータ（POST）があれば実行
-if ($_POST) {
+if (!empty($_POST['player_hand'])) {
     //配列をランダムに取得
     $pc_hand = array_rand($hands);
 

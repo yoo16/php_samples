@@ -1,5 +1,6 @@
 <?php
-class ArrayMerge {
+class ArrayMerge
+{
     public $index = 0;
 
     /**
@@ -7,10 +8,11 @@ class ArrayMerge {
      *
      * @return void
      */
-    function init() {
+    function init()
+    {
         $this->index = 0;
     }
- 
+
     /**
      * generateValues
      *
@@ -24,7 +26,7 @@ class ArrayMerge {
         for ($i = $from_index; $i < $count + $from_index; $i++) $values[$i] = "{$prefix}{$i}";
         return $values;
     }
- 
+
     /**
      * generateValuesWithIndex
      *
@@ -38,7 +40,7 @@ class ArrayMerge {
         }
         return $values;
     }
- 
+
     /**
      * display
      *
@@ -46,17 +48,18 @@ class ArrayMerge {
      * @param array $values
      * @return void
      */
-    function display($title, $values) {
-        echo($title).PHP_EOL;
+    function display($title, $values)
+    {
+        echo ($title) . PHP_EOL;
         var_export($values);
-        echo(PHP_EOL);
+        echo (PHP_EOL);
     }
 }
 
 $array_merge = new ArrayMerge();
 
 //values same index
-echo('-- Same Index').PHP_EOL;
+echo ('-- Same Index') . PHP_EOL;
 //values1 + values2
 $values1 = $array_merge->generateValues(10);
 $values2 = $array_merge->generateValues(10);
@@ -69,7 +72,7 @@ $array_merge->display('$values1 + $values2(same index)', $values);
 $values = array_merge($values1, $values2);
 $array_merge->display('array_merge($values1, $values2) (same index)', $values);
 
-echo('-- Same Index, Diffrence value').PHP_EOL;
+echo ('-- Same Index, Diffrence value') . PHP_EOL;
 //values1 + values2
 $values1 = $array_merge->generateValues(10, 'red');
 $values2 = $array_merge->generateValues(10, 'blue');
@@ -82,9 +85,9 @@ $values = array_merge($values1, $values2);
 $array_merge->display('array_merge($values1, $values2) (same index)', $values);
 
 //values diffrence index
-echo('-- Diffrence Index').PHP_EOL;
+echo ('-- Diffrence Index') . PHP_EOL;
 $values1 = $array_merge->generateValuesWithIndex(10);
-$array_merge->index+= 10;
+$array_merge->index += 10;
 $values2 = $array_merge->generateValuesWithIndex(10);
 $array_merge->display('$values1(diffrent index)', $values1);
 $array_merge->display('$values2(diffrent index)', $values2);

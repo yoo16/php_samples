@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <form id="form" name="my_form" action="#">
+    <input id="user_name" name="user_name" type="text">
+    <button id="check">表示</button>
+  </form>
+
+  <script>
+    const check = document.getElementById('check');
+    check.addEventListener('click', function (e) {
+      e.preventDefault();
+      let user_name = document.getElementById('user_name');
+      //let user_name = document.querySelector('[name=user_name]');
+      //let user_name = document.getElementsByName('user_name');
+      //alert(user_name[0].value);
+      //let user_name = document.my_form.user_name;
+      console.log(user_name);
+      alert(user_name.value);
+    });
+  </script>
+</body>
+
+</html>
