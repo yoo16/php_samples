@@ -11,54 +11,45 @@ $dsn = "mysql:host={$host}; dbname={$db_name}; charset=utf8";
 if (isset($_POST['email'])) {
     try {
         $pdo = new PDO($dsn, $db_user, $db_pass);
-        insert($pdo);
+        $user = login($pdo);
     } catch (Exception $e) {
         echo $e->getMessage();
         die();
     }
 }
 
-function insert($pdo)
+function login($pdo)
 {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
-
-    //自動的に SQL をエスケープ
-    $stmt = $pdo->prepare($sql);
-    $posts = [
-        ':name' => $name,
-        ':email' => $email,
-        ':password' => $password,
-    ];
-
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
-    if (!$stmt->execute($posts)) {
-        var_dump($pdo->errorInfo());
-        exit;
-    }
+
+    $email = $_POST['email'];
+    $sql = "SELECT * FROM users WHERE email = ':email'";
+    $sql = "SELECT * FROM users WHERE id = 1";
+    //$stmt = $pdo->prepare($sql);
+    //$posts = [ ':email' => $email, ];
+    $stmt = $pdo->query($sql);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $hash = $row['password'];
+    $is_valid = password_verify($_POST['password'], $hash);
+    if ($is_valid) return $row;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>会員登録</title>
+    <title>Login</title>
 </head>
 
 <body>
-    <h1>会員登録</h1>
+    <h1>Login</h1>
+    <?php if (isset($user)): ?>
     <p>
-        <?= @$result ?>
+     <?= $user['name'] ?> logined!!
     </p>
+    <?php endif ?>
+
     <form action="" method="post">
-        <p>
-            <label>Name：</label>
-            <input type="text" name="name">
-        </p>
         <p>
             <label>Email：</label>
             <input type="text" name="email">
@@ -67,7 +58,7 @@ function insert($pdo)
             <label>Password：</label>
             <input type="password" name="password">
         </p>
-        <input type="submit" name="submit" value="Regist">
+        <input type="submit" name="submit" value="Login">
     </form>
 </body>
 
