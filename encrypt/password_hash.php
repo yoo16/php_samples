@@ -24,10 +24,9 @@ function insert($pdo)
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+
+    //自動的に SQL をエスケープ
     $stmt = $pdo->prepare($sql);
-    // $stmt->bindParam(':name', $name);
-    // $stmt->bindParam(':email', $email);
-    // $stmt->bindParam(':password', $password);
     $posts = [
         ':name' => $name,
         ':email' => $email,
@@ -37,8 +36,6 @@ function insert($pdo)
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
     if (!$stmt->execute($posts)) {
         var_dump($pdo->errorInfo());
-        var_dump($stmt->sql);
-        var_dump($sql);
         exit;
     }
 }
