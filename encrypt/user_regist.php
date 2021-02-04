@@ -1,8 +1,9 @@
 <?php
 
-//$host = 'localhost';
-$host = 'host.docker.internal';
-$db_name = 'laravel_shop';
+//$host = 'host.docker.internal';
+//$db_name = 'laravel_shop';
+$host = 'localhost';
+$db_name = 'shop';
 $db_user = 'root';
 $db_pass = '';
 $dsn = "mysql:host={$host}; dbname={$db_name}; charset=utf8";
