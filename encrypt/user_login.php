@@ -1,9 +1,9 @@
 <?php
 
-// $host = 'host.docker.internal';
-// $db_name = 'laravel_shop';
-$host = 'localhost';
-$db_name = 'shop';
+$host = 'host.docker.internal';
+$db_name = 'laravel_shop';
+// $host = 'localhost';
+// $db_name = 'shop';
 $db_user = 'root';
 $db_pass = '';
 $dsn = "mysql:host={$host}; dbname={$db_name}; charset=utf8";
@@ -24,9 +24,9 @@ function login($pdo)
 
     $email = $_POST['email'];
     $sql = "SELECT * FROM users WHERE email = ':email'";
-    $sql = "SELECT * FROM users WHERE id = 1";
-    //$stmt = $pdo->prepare($sql);
-    //$posts = [ ':email' => $email, ];
+    $stmt = $pdo->prepare($sql);
+    $posts = [ ':email' => $email, ];
+    //$stmt = $pdo->query($sql);
     $stmt = $pdo->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $hash = $row['password'];
