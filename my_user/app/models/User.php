@@ -44,8 +44,8 @@ class User extends Model
         $email = $data['email'];
         $password = $data['password'];
         //TODO
-        $sql = "SELECT * FROM users WHERE email = '{$email}';";
-        $user = $this->fetch($sql);
+        $params['where'] = "email = '{$email}'";
+        $user = $this->fetch($params);
 
         if (password_verify($password, $user['password'])) {
             Session::add('user', $user);

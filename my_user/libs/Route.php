@@ -3,7 +3,7 @@
 class Route
 {
     //TODO
-    public static $base_url = 'http://localhost';
+    public static $base_url = '/';
 
     public static function redirect($action, $params = '')
     {

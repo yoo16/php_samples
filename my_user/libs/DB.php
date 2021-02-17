@@ -9,7 +9,7 @@ class DB
     public $dbname = '';
     public $dsn = '';
     public $pdo = null;
-    public $sth = null;
+    public $stmt = null;
     public $table_name = '';
     public $sql = '';
 
@@ -51,7 +51,7 @@ class DB
     public function query($sql)
     {
         $this->sql = $sql;
-        $this->sth = $this->pdo->query($this->sql);
+        $this->stmt = $this->pdo->query($this->sql);
         return $this;
     }
 
@@ -59,10 +59,27 @@ class DB
     public function fetchRow($sql = '')
     {
         if ($sql) $this->sql = $sql;
-        $this->sth = $this->pdo->prepare($this->sql);
-        $this->sth->execute();
-        $row = $this->sth->fetch(PDO::FETCH_ASSOC);
+        $this->stmt = $this->pdo->prepare($this->sql);
+        $this->stmt->execute();
+        $row = $this->stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
+    }
+
+    //TODO
+    public function fetchRows($sql = '')
+    {
+        if ($sql) $this->sql = $sql;
+        try {
+            $this->stmt = $this->pdo->prepare($this->sql);
+            $this->stmt->execute();
+            $rows = [];
+            while ($row = $this->stmt->fetch(PDO::FETCH_ASSOC)) {
+                $rows[] = $row;
+            }
+            return $rows;
+        } catch (Exception $e) {
+            var_dump($e);
+        }
     }
 
     public function tableName($table_name)
@@ -75,8 +92,8 @@ class DB
     {
         try {
             $sql = $this->queryBuildInsert($data);
-            $this->sth = $this->pdo->prepare($sql);
-            $this->result = $this->sth->execute($data);
+            $this->stmt = $this->pdo->prepare($sql);
+            $this->result = $this->stmt->execute($data);
             return $this;
         } catch (PDOException $e) {
             echo 'SQL Insert error.';
