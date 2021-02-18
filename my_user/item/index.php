@@ -39,10 +39,7 @@ $items = $item->fetchRows();
                                     </p>
                                 </div>
                                 <p class="text-center m-2">
-                                    <a href="../cart/add.php" class="btn btn-danger">カートに入れる</a>
-                                    <p>
-                                    ../cart/add.php
-                                    </p>
+                                    <a href="../cart/add.php?item_id=<?= $item['id'] ?>" class="btn btn-danger">カートに入れる</a>
                                 </p>
                             </div>
                         </div>

@@ -17,7 +17,7 @@
                                 </p>
                             </div>
                             <p class="text-center m-2">
-                                <a href="#" class="btn btn-danger">カートに入れる</a>
+                                <a href="cart/add.php?item_id=<?= $item['id'] ?>" class="btn btn-danger">カートに入れる</a>
                             </p>
                         </div>
                     </div>

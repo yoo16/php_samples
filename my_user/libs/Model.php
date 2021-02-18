@@ -4,11 +4,20 @@ define('MODELS_DIR', APP_DIR.'models/');
 class Model
 {
     public $errors = [];
+    public $value;
 
     public function query($sql)
     {
         $db = DB::connect();
         $db->query($sql);
+    }
+
+    public function find($id)
+    {
+        //TODO query builder
+        $db = DB::connect();
+        $sql = "SELECT * FROM {$this->table_name} WHERE id = {$id};";
+        return $db->fetchRow($sql);
     }
 
     public function fetch($params)
@@ -20,7 +29,6 @@ class Model
             $sql.= " WHERE {$params['where']}";
         }
         $sql.= ";";
-        echo($sql).PHP_EOL;
         return $db->fetchRow($sql);
     }
 
