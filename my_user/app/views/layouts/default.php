@@ -27,6 +27,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= Route::url('/regist/') ?>">ユーザ登録</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Route::url('/item/') ?>">商品</a>
+                    </li>
                 <?php else: ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= Route::url('/user/logout.php') ?>">ログアウト</a>

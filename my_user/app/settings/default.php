@@ -1,6 +1,8 @@
 <?php
 //APP setting
 define('APP_KEY', 'regist_app');
+
+//env setting
 define('BASE_URL', '/php_samples/my_user');
 
 //DB setting

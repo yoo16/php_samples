@@ -1,4 +1,4 @@
-<div class="containerm mt-3">
+<div class="container mt-3">
     <div class="row">
         <?php if (isset($items)) : ?>
             <?php foreach ($items as $item) : ?>

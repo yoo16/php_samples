@@ -32,8 +32,10 @@ class User extends Model
 
     public function checkAuth()
     {
+        //セッションからユーザ情報があるかチェック
         $user = Session::get('user');
         if (empty($user['id'])) {
+            //ログインページにリダイレクト
             Route::redirect('/user/login.php');
         }
         return $user;
@@ -47,8 +49,19 @@ class User extends Model
         $params['where'] = "email = '{$email}'";
         $user = $this->fetch($params);
 
+        //1) 生のパスワードの場合
+        // SELECT * FROM users WHERE email = 'xxxx' AND password = 'xxxx';
+
+        //2) ハッシュパスワードの場合
+        // SELECT * FROM users WHERE email = 'xxxx';
+        //ユーザが入力したパスワード
+        //テーブルのレコードのパスワード
+        //ハッシュの検証
         if (password_verify($password, $user['password'])) {
+            //認証が成功
+            //セッションに ログインユーザ情報を登録
             Session::add('user', $user);
+            // $_SESSION
             return $user;
         } else {
             $this->errors['login'] = self::errorMessaage('login', 'invalid');
@@ -72,10 +85,10 @@ class User extends Model
         if (empty($data['email'])) {
             $error = self::$error_messages['email']['required'];
         } else {
-            //TODO query builder
-            $sql = "SELECT * FROM {$this->table_name} WHERE email = '{$data['email']}';";
-            if ($this->fetch($sql)) $error = self::errorMessaage('email', 'exists');
+            $params['where'] = "email = '{$data['email']}';";
+            if ($this->fetch($params)) $error = self::errorMessaage('email', 'exists');
         }
+        //SELECT * FROM users WHERE email = 'xxxx';
         if ($error) $this->errors['email'] = $error;
         return $error;
     }

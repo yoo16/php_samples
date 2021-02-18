@@ -20,6 +20,7 @@ class Model
             $sql.= " WHERE {$params['where']}";
         }
         $sql.= ";";
+        echo($sql).PHP_EOL;
         return $db->fetchRow($sql);
     }
 
