@@ -1,6 +1,7 @@
 {
     "require": {
         "pimple/pimple": "~3.0",
-        "phpmailer/phpmailer": "^6.2"
+        "phpmailer/phpmailer": "^6.2",
+        "swiftmailer/swiftmailer": "^6.2"
     }
 }
