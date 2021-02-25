@@ -6,13 +6,14 @@ require_once './vendor/autoload.php';
 $dotenv =Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$smtp = $_ENV['smtp'];
-$port = $_ENV['port'];
-$encrypt = $_ENV['encrypt'];
-$user_name = $_ENV['user_name'];
-$password = $_ENV['password'];
-$from = $_ENV['from'];
-$from_name = $_ENV['from_name'];
+$smtp = $_ENV['MAIL_SMTP'];
+$port = $_ENV['MAIL_PORT'];
+$encrypt = $_ENV['MAIL_ENCRYPTION'];
+$user_name = $_ENV['MAIL_USERNAME'];
+$password = $_ENV['MAIL_PASSWORD'];
+$from = $_ENV['MAIL_FROM_ADDRESS'];
+$from_name = $_ENV['MAIL_FROM_NAME'];
+$to = $_ENV['MAIL_TO'];
 
 //mail
 $subject = 'Hello!';
@@ -26,7 +27,7 @@ HTMLメールです
 </body>
 </html>';
 $from_address = [$from => $from_name];
-$to_address = ['yohei.yoshikawa@gmail.com'];
+$to_address = [$to];
 
 // 送信設定
 $transport = new Swift_SmtpTransport($smtp, $port, $encrypt);
