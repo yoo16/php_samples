@@ -10,3 +10,8 @@ echo substr($email, $index + 1).PHP_EOL;
 $results = explode('@', $email);
 echo $results[0].PHP_EOL;
 echo $results[1].PHP_EOL;
+
+//pregmatch
+$pattern = '/^([a-zA-Z0-9]*)@([a-zA-Z0-9_-]*)([a-zA-Z0-9\._-]+)+$/';
+preg_match($pattern, $email, $maches);
+var_dump($maches);

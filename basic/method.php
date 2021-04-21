@@ -16,7 +16,6 @@ echo $y;  //null
 $answer = calculate1(2);
 var_dump($answer);
 
-
 function showMessage(string $title, string $city)
 {
     $result = "{$title} {$city}";

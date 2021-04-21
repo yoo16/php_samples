@@ -29,6 +29,14 @@ foreach ($fruits as $fruite) {
 }
 echo PHP_EOL;
 
+/** 
+ * 1900年から今年までのループ
+ */
+foreach (range(1900, date('Y')) as $year) {
+    echo $year;
+    echo PHP_EOL;
+}
+echo PHP_EOL;
 
 /**
  * 連想配列のループ

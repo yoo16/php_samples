@@ -25,7 +25,7 @@ if (!empty($_POST['player_hand'])) {
  *
  * @param int $player_hand
  * @param int $pc_hand
- * @return void
+ * @return int
  */
 function janken($player_hand, $pc_hand)
 {

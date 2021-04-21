@@ -1,15 +1,19 @@
 <?php
 
 /**
- * もし身長が160cm以上だったら乗車できる
+ * もしモンスターのHPが0より大きかったら戦う、そうでなけば戦闘終了
  */
-$height = 160;
-if ($height >= 150) {
-    echo '乗車できます';
+
+$monster = new stdClass;
+$monster->hp = 10;
+$attack = 10;
+$hp = $monster->hp - $attack;
+if ($hp > 0) {
+    $message = 'モンスターの攻撃';
 } else {
-    echo '乗車できません';
+    $message = 'モンスターを倒した';
 }
-echo PHP_EOL;
+echo $message.PHP_EOL;
 
 /**
  * もし移動距離が1km未満だったら徒歩
@@ -57,23 +61,23 @@ switch ($weekday) {
 echo PHP_EOL;
 
 //複数の case を利用する場合
-$os = 'Ubuntu';
-switch ($os) {
-    case "CentOS":
-    case "Debian":
-    case "Ubuntu":
-        echo "Linux";
+$magic_name = 'ファイヤー';
+switch ($magic_name) {
+    case "ファイヤー":
+    case "メガファイヤー":
+    case "テラファイヤー":
+        echo "火属性";
         break;
-    case "Catalina":
-    case "Mojave":
-        echo "MacOS";
+    case "アイス":
+    case "メガアイス":
+        echo "水属性";
         break;
-    case "Windows7":
-    case "Windows10":
-        echo "Windows";
+    case "サンダー":
+    case "メガサンダー":
+        echo "雷属性";
         break;
     default:
-        echo "Not found";
+        echo "物理属性";
         break;
 }
 echo PHP_EOL;
