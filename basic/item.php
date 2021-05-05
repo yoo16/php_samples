@@ -20,6 +20,7 @@ echo 'ノーム' . 'ドラゴン';
 echo "\n";
 
 echo 100;
+echo "\n";
 echo -10.5;
 echo "\n";
 
@@ -42,8 +43,6 @@ $string;
 $Message;
 $MESSAGE;
 $user_name;
-
-1;
 
 // message;
 // //数字が先頭
@@ -142,6 +141,9 @@ $callback = function($a, $b) {
 $result = call_user_func($callback, 1, 2);
 echo $result.PHP_EOL;
 
+//定数
+define('TAX_RATE', 0.1);
+var_dump(TAX_RATE);
 
 //型の自動変換
 //数値計算

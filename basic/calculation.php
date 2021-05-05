@@ -4,7 +4,8 @@
  * 二項演算
  */
 $hp = 3;
-var_dump($hp + 1);
+$hp = $hp + 1;
+var_dump($hp);
 
 $hp = 1;
 var_dump($hp - 2);
@@ -17,6 +18,12 @@ var_dump($hp / 5);
 
 $hp = 6;
 var_dump($hp % 5);
+
+$price = 88;
+$amount = 13;
+$total_price = $price * $amount; 
+echo $total_price;
+echo PHP_EOL;
 
 // . 
 //文字列を連結する演算子
@@ -155,3 +162,13 @@ $var1 = 10;
 $var2 = ++$var1;
 
 var_dump($var2);
+
+
+//
+$hp = 5;
+$hp++;
+$hp-4;
+$hp*4;
+$hp/2;
+echo $hp;
+echo PHP_EOL;

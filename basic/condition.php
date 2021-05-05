@@ -61,23 +61,41 @@ switch ($weekday) {
 echo PHP_EOL;
 
 //複数の case を利用する場合
-$magic_name = 'ファイヤー';
-switch ($magic_name) {
-    case "ファイヤー":
-    case "メガファイヤー":
-    case "テラファイヤー":
-        echo "火属性";
+$item_name = 'こんぼう';
+$type = '';
+switch ($item_name) {
+    case "銅のつるぎ":
+    case "鉄のやり":
+    case "こんぼう":
+        $type = "武器";
         break;
-    case "アイス":
-    case "メガアイス":
-        echo "水属性";
+    case "皮のたて":
+    case "鉄のかぶと":
+    case "銀のよろい":
+        $type = "防具";
         break;
-    case "サンダー":
-    case "メガサンダー":
-        echo "雷属性";
+    case "やくそう":
+    case "どくけしそう":
+        $type = "道具";
         break;
     default:
-        echo "物理属性";
+        $type = "その他";
         break;
+}
+echo $type;
+echo PHP_EOL;
+
+
+//
+$money = 10000;
+$price = 348;
+$amount = 32;
+
+$total_price = $price * $amount;
+
+if ($total_price > $money) {
+    echo '所持金が足りません';
+} else {
+    echo "合計金額は {$total_price} 円です";
 }
 echo PHP_EOL;
