@@ -163,6 +163,14 @@ $var2 = ++$var1;
 
 var_dump($var2);
 
+$score1 = 76;
+$score2 = 83;
+$score3 = 69;
+$score4 = 91;
+$total_score = $score1 + $score2 + $score3 + $score4;
+$average = $total_score / 4;
+echo $average;
+echo PHP_EOL;
 
 //
 $hp = 5;
@@ -171,4 +179,12 @@ $hp-4;
 $hp*4;
 $hp/2;
 echo $hp;
+echo PHP_EOL;
+
+$number = 10;
+echo ++$number;
+echo PHP_EOL;
+
+$number = 10;
+echo $number++;
 echo PHP_EOL;
