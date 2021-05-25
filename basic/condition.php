@@ -4,16 +4,14 @@
  * もしモンスターのHPが0より大きかったら戦う、そうでなけば戦闘終了
  */
 
-$monster = new stdClass;
-$monster->hp = 10;
-$attack = 10;
-$hp = $monster->hp - $attack;
-if ($hp > 0) {
-    $message = 'モンスターの攻撃';
+$price = 200;
+$money = 100;
+if ($money > $price) {
+    $message = "お買い上げありがとうございました";
 } else {
-    $message = 'モンスターを倒した';
+    $message = "お金が足りないようです";
 }
-echo $message.PHP_EOL;
+echo $message . PHP_EOL;
 
 /**
  * もし移動距離が1km未満だったら徒歩
@@ -28,6 +26,22 @@ if ($distance < 1) {
     echo '自転車';
 } else {
     echo '電車';
+}
+echo PHP_EOL;
+
+
+$distance = 3;
+$is_rain = true;
+if ($is_rain) {
+    echo '外出はやめよう';
+} else {
+    if ($distance < 1) {
+        echo '徒歩';
+    } else if ($distance >= 1 && $distance < 5) {
+        echo '自転車';
+    } else {
+        echo '電車';
+    }
 }
 echo PHP_EOL;
 

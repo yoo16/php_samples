@@ -1,43 +1,76 @@
 <?php
-$genders = ['male' => '男性', 'female' => '女性'];
+session_start();
+session_regenerate_id(true);
 
 $member = [];
 if (!empty($_POST)) {
     $member = $_POST;
+    $member = checkSpace($_POST);
+    $_SESSION['member'] = $member;
 }
+
+$genders = ['male' => '男性', 'female' => '女性'];
+
 $errors = validate($member);
+
+function checkSpace($member)
+{
+    $member['name'] = trim($member['name']);
+    $member['email'] = trim($member['email']);
+
+    $member['name'] = removeZenkakuSpace($member['name']);
+    $member['kana'] = removeZenkakuSpace($member['kana']);
+
+    return $member;
+}
+
+function removeZenkakuSpace($value)
+{
+    //先頭の全角スペースを空にする
+    $value = preg_replace('/^[　]+/u', '', $value);
+
+    //最後の全角スペースを空にする
+    $value = preg_replace('/[　]+$/u', '', $value);
+
+    return $value;
+}
 
 function validate($member)
 {
     $errors = [];
+    //empty
     if (empty($member['name'])) {
-        $errors[] = '氏名を入力してください';
+        $errors['name'] = '氏名を入力してください';
     }
     if (empty($member['kana'])) {
-        $errors[] = 'かなを入力してください';
+        $errors['kana'] = 'かなを入力してください';
     }
     if (empty($member['email'])) {
-        $errors[] = 'メールアドレスを入力してください';
+        $errors['email'] = 'メールアドレスを入力してください';
     }
     if (empty($member['password'])) {
-        $errors[] = 'パスワードを入力してください';
-    } else {
-        if (!preg_match("/^[a-z0-9_@]{6,20}$/i", $member['password'])) {
-            $errors[] = 'パスワードは6文字以上20文字以下の半角英数で入力してください';
-        }
+        $errors['password'] = 'パスワードを入力してください';
     }
     if (empty($member['tel'])) {
-        $errors[] = '電話番号を入力してください';
+        $errors['tel'] = '電話番号を入力してください';
     }
-    if (empty($member['year'])) {
-        $errors[] = '誕生日年を入力してください';
+
+    //match
+    if (!preg_match("/^[a-z0-9_@]{6,20}$/", $member['password'])) {
+        $errors['password'] = 'パスワードは6文字以上20文字以下の半角英数で入力してください';
     }
-    if (empty($member['gender'])) {
-        $errors[] = '性別を入力してください';
+    if (!preg_match("/^[0-9]{10,12}$/", $member['tel'])) {
+        $errors['tel'] = '電話番号が正しくありません';
     }
     return $errors;
 }
 
+function validateMatch($pattern, $value, $message)
+{
+    if (!preg_match($pattern, $value)) {
+        return $message;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -55,9 +88,9 @@ function validate($member)
         <h1 class="h1">会員登録フォーム</h1>
         <?php if ($errors) : ?>
             <div class="alert alert-danger">
-                <?php foreach ($errors as $error_message) : ?>
+                <?php foreach ($errors as $error) : ?>
                     <ul>
-                        <li><?= $error_message ?></li>
+                        <li><?= $error ?></li>
                     </ul>
                 <?php endforeach ?>
             </div>
