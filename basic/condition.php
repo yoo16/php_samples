@@ -74,6 +74,19 @@ switch ($weekday) {
 }
 echo PHP_EOL;
 
+//date()を使った場合
+$week_number = date('w');
+switch ($week_number) {
+    case 1:
+    case 5:
+        echo "燃えるゴミ";
+    case 3:
+        echo "燃えないゴミ";
+    default:
+        echo "回収なし";
+}
+echo PHP_EOL;
+
 //複数の case を利用する場合
 $item_name = 'こんぼう';
 $type = '';
@@ -99,8 +112,7 @@ switch ($item_name) {
 echo $type;
 echo PHP_EOL;
 
-
-//
+//所持金と合計金額の条件
 $money = 10000;
 $price = 348;
 $amount = 32;
