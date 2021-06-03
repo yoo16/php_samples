@@ -10,6 +10,13 @@ if (!empty($_POST)) {
 }
 
 $genders = ['male' => '男性', 'female' => '女性'];
+$q1 = [
+    'internet' => 'インターネット',
+    'tv' => 'TV',
+    'mail' => 'メール',
+    'sns' => 'SNS',
+    'other' => 'その他',
+];
 
 $errors = validate($member);
 
@@ -74,12 +81,12 @@ function validateMatch($pattern, $value, $message)
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>会員登録</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
@@ -95,7 +102,7 @@ function validateMatch($pattern, $value, $message)
                 <?php endforeach ?>
             </div>
         <?php endif ?>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="result.php" method="post">
             <div class="form-group">
                 <label class="col-sm-2 col-form-label">氏名</label>
                 <?= $member['name'] ?>
@@ -122,6 +129,15 @@ function validateMatch($pattern, $value, $message)
                 <label class="col-sm-2 col-form-label">性別</label>
                 <?php if ($member['gender']) : ?>
                     <?= $genders[$member['gender']] ?>
+                <?php endif ?>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-form-label">Q1</label>
+                <?php if ($member['q1']) : ?>
+                <?php foreach ($member['q1'] as $value) : ?>
+                    <?= $q1[$value] ?>
+                <?php endforeach ?>
                 <?php endif ?>
             </div>
 
