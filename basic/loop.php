@@ -101,7 +101,6 @@ echo "{$number}の倍数は{$count}個です。" . PHP_EOL;
 //問題2
 //白黒交互
 for ($row = 1; $row <= 5; $row++) {
-    echo "|";
     for ($col = 1; $col <= 5; $col++) {
         $number = rand(0, 1);
         // $mark = ($number == 1) ? "○" : "●";
@@ -110,7 +109,6 @@ for ($row = 1; $row <= 5; $row++) {
         } else {
             $mark = "●";
         }
-        $mark .= "|";
         echo $mark;
     }
     echo PHP_EOL;
