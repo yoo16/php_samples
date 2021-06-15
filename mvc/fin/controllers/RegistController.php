@@ -20,11 +20,21 @@ class RegistController extends Controller
 
     public function confirm()
     {
-        echo '確認処理';
+        $member = new Member();
+        $member->bind($_POST);
+        $member->validate();
+        Session::save('member', $member);
+        include('views/regist/confirm.php');
     }
 
     public function result()
     {
-        echo '完了処理';
+        $member = Session::load('member');
+        if (empty($member)) {
+            header('Location: input.php');
+        } else {
+            unset($_SESSION['member']);
+            include('views/regist/result.php');
+        }
     }
 }

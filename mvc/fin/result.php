@@ -2,12 +2,8 @@
 require_once 'models/Member.php';
 require_once 'helpers/Form.php';
 require_once 'helpers/Session.php';
+require_once 'controllers/RegistController.php';
 
-$member = Session::load('member');
-if (empty($member)) {
-    header('Location: input.php');
-} else {
-    unset($_SESSION['member']);
-    include('views/regist/result.php');
-}
+$controller = new RegistController();
+$controller->result();
 ?>
