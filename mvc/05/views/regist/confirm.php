@@ -48,7 +48,7 @@
 
         <div class="form-group">
             <label for="" class="col-2">性別</label>
-            <?= $genders[$member->value['gender']] ?>
+            <?= Form::gender($member->value['gender']) ?>
         </div>
 
         <div>
