@@ -6,15 +6,8 @@
 <body>
     <div class="container">
         <h1 class="h1">会員登録フォーム</h1>
-        <?php if ($member->errors) : ?>
-            <div class="alert alert-danger">
-                <?php foreach ($member->errors as $error) : ?>
-                    <ul>
-                        <li><?= $error ?></li>
-                    </ul>
-                <?php endforeach ?>
-            </div>
-        <?php endif ?>
+	<?php include('views/components/error_message.php') ?>
+
         <form action="result.php" method="post">
             <div class="form-group">
                 <label class="col-sm-2 col-form-label">氏名</label>
