@@ -8,7 +8,7 @@
         <h1 class="h1">会員登録フォーム</h1>
 	<?php include('views/components/error_message.php') ?>
 
-        <form action="result.php" method="post">
+        <form action="result" method="post">
             <div class="form-group">
                 <label class="col-sm-2 col-form-label">氏名</label>
                 <?= $member->value['name'] ?>
@@ -35,7 +35,7 @@
             </div>
 
             <div>
-                <a href="input.php" class="btn btn-outline-primary">戻る</a>
+                <a href="input" class="btn btn-outline-primary">戻る</a>
                 <?php if (empty($member->errors)) : ?>
                     <button class="btn btn-primary">登録</button>
                 <?php endif ?>

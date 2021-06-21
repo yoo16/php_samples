@@ -16,7 +16,7 @@
             会員登録が完了しました。
         </p>
         <p>
-        <a class="btn btn-outline-primary" href="input.php">戻る</a>
+        <a class="btn btn-outline-primary" href="input">戻る</a>
         </p>
     </div>
 </body>

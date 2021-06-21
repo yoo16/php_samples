@@ -56,14 +56,22 @@ echo PHP_EOL;
 //isset
 $value = "";
 if (isset($value)) {
-    echo "変数に値が設定されています";
+    echo $value;
 } else {
     echo "エラー";
 }
 echo PHP_EOL;
 
-if (isset($value2)) {
-    echo "変数に値が設定されています";
+// 未定義の場合は PHP エラー
+// if (is_null($price)) {
+//     echo "NULL です。";
+// } else {
+//     echo $price;
+// }
+// echo PHP_EOL;
+
+if (isset($price)) {
+    echo $price;
 } else {
     echo "エラー";
 }
@@ -73,35 +81,51 @@ echo PHP_EOL;
 //string
 $value = "";
 if (empty($value)) {
-    echo "空欄です" . PHP_EOL;
+    echo "データを入力してください" . PHP_EOL;
 }
 
 //boolean
 $value = false;
 if (empty($value)) {
-    echo "False です" . PHP_EOL;
+    echo "データを入力してください" . PHP_EOL;
 }
 
 //boolean
 $value = 0;
 if (empty($value)) {
-    echo "0 です" . PHP_EOL;
+    echo "データを入力してください" . PHP_EOL;
 }
 
 //array
 $value =[];
 if (empty($value)) {
-    echo "配列が空です" . PHP_EOL;
+    echo "データを入力してください" . PHP_EOL;
 }
 
 //null
 $value = null;
 if (empty($value)) {
-    echo "NULL です" . PHP_EOL;
+    echo "データを入力してください" . PHP_EOL;
 }
-if (empty($value2)) {
-    echo "NULL です" . PHP_EOL;
+
+// undefined
+if (empty($price)) {
+    echo "データを入力してください" . PHP_EOL;
 }
+
+
+//str_replace()
+$message = "明日は雨です";
+$message = str_replace("雨", "晴れ", $message);
+echo $message . PHP_EOL;
+
+//
+$user_name = "";
+if (empty($user_name)) {
+    $message = "ユーザ名を入力してください";
+}
+echo $message;
+echo PHP_EOL;
 
 //is_numeric
 $number = 10;
@@ -121,7 +145,7 @@ if (is_int($number)) {
     echo "整数です" . PHP_EOL;
 }
 if (is_float($number)) {
-    echo "少数です" . PHP_EOL;
+    echo "小数です" . PHP_EOL;
 }
 if (is_string($number)) {
     echo "文字列です" . PHP_EOL;

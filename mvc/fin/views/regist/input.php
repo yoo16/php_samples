@@ -6,7 +6,7 @@
 <body>
     <div class="container">
         <h1 class="h1">会員登録フォーム</h1>
-        <form action="confirm.php" method="post" enctype="multipart/form-data">
+        <form action="confirm" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label>氏名<label class="text-danger">*</label></label>
                 <input class="form-control" type="text" name="name" value="<?= $member->value['name'] ?>">
