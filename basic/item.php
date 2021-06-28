@@ -14,15 +14,12 @@
 
 1 + 2;
 
-echo "スライム";
-echo 'キメラ';
-echo 'ノーム' . 'ドラゴン';
-echo "\n";
+echo "コーヒー";
+echo 'コーヒー';
+echo '無糖' . 'コーヒー';
 
 echo 100;
-echo "\n";
 echo -10.5;
-echo "\n";
 
 echo "ミネラルウォーター";
 echo "\n";
