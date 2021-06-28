@@ -11,6 +11,10 @@ $length = count($drinks);
 echo $length;
 echo PHP_EOL;
 
+//update
+$drinks[1] = 'ウーロン茶';
+var_dump($drinks);
+
 //配列の追加
 $drinks[] = '炭酸水';
 var_dump($drinks);
@@ -40,10 +44,6 @@ $index = array_search('ほうじ茶', $drinks);
 echo $index;
 echo PHP_EOL;
 
-//update
-$drinks[1] = 'ウーロン茶';
-var_dump($drinks);
-
 //null
 $drinks[1] = null;
 var_dump($drinks);
@@ -51,3 +51,25 @@ var_dump($drinks);
 //unset
 unset($drinks[1]);
 var_dump($drinks);
+
+//練習1
+$week_of_days = ['日', '月', '火', '水', '木', '金', '土',];
+$week_index = date('w');
+echo $week_of_days[$week_index];
+echo PHP_EOL;
+
+//練習2
+var_dump(is_array($drinks));
+var_dump(in_array('ほうじ茶', $drinks));
+var_dump(array_keys($drinks));
+
+$foods = ['カレー', 'ラーメン'];
+$items = array_merge($drinks, $foods);
+var_dump($items);
+
+rsort($items);
+var_dump($items);
+
+$index = array_rand($items);
+sort($items);
+echo $items[$index];
