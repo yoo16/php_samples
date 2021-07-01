@@ -46,3 +46,11 @@ $character['armor'] = '皮のよろい';
 $character['items'] = ['やくそう', 'どくけしそう', '銅のかぎ'];
 
 var_dump($character);
+
+
+$rows = [
+    [90, 78, 82,],
+    [62, 70, 68,],
+    [68, 88, 72,],
+];
+var_dump($rows);

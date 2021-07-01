@@ -89,17 +89,16 @@ $discount = -100;
 
 $tax_rate = 0.1;
 $average = 0.333;
-$speed = 45.5;
+
+var_dump($tax_rate);
+var_dump($average);
 
 //配列
 $years = [2020, 2019, 2018, 2017];
-$monsters = ['スライム', 'ゾンビ', 'キメラ', 'ドラゴン'];
+$drinks = ['コーヒー', '紅茶', 'ほうじ茶'];
 
-echo $years[0];
-echo PHP_EOL;
-
-echo $monsters[3];
-echo PHP_EOL;
+var_dump($years);
+var_dump($drinks);
 
 //連想配列
 $character = [
@@ -108,12 +107,15 @@ $character = [
     "hp" => 50,
 ];
 
-echo $character["hp"];
-echo PHP_EOL;
+var_dump($character);
+
+$character = null;
+var_dump($character);
 
 //論理型（bool）
 // $is_win に true を代入
 $is_win = true;
+var_dump($is_win);
 
 // 条件分岐
 if ($is_win == true) {
