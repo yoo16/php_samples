@@ -8,3 +8,5 @@ image/images/*
 .DS_Store
 .env
 composer.lock
+file/data/users.csv
+regist/01/data/user.csv

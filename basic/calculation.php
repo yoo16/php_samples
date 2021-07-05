@@ -25,24 +25,10 @@ $total_price = $price * $amount;
 echo $total_price;
 echo PHP_EOL;
 
-// . 
-//文字列を連結する演算子
-$monster_name = "スライム";
-echo $monster_name."があわられた！";
-echo PHP_EOL;
-
-//文字列リテラル
-$monster_name = "スライム";
-$hp = 10;
-$status = "{$monster_name}のHPは{$hp}";
-echo $status;
-echo PHP_EOL;
-
-//シングルクォーテーション
-$monster_name = "スライム";
-$hp = 10;
-echo '{$monster_name}のHPは{$hp}';
-echo '\n';
+$price = 150;
+$money = 200;
+$message = ($money >= $price) ? '購入できます' : '購入できません';
+echo $message;
 
 /**
  * 単項演算

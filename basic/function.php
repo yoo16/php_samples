@@ -1,155 +1,165 @@
 <?php
 
-$date_string = date('Y-m-d H:i:s');
-echo $date_string;
-$random_number = rand(1, 6);
-var_dump($random_number);
-
-//文字列の長さ
-$message = "Hello";
-echo strlen($message) . PHP_EOL;
-
-$message = "こんにちは";
-echo strlen($message) . PHP_EOL;
-echo mb_strlen($message) . PHP_EOL;
-
-//文字列の抜き出し（位置指定）
-$message = "Hello,Tokyo";
-//7文字目からすべて取得
-echo substr($message, 6) . PHP_EOL;
-//最初から5文字取得
-echo substr($message, 0, 5) . PHP_EOL;
-//後ろから5文字目からすべて取得
-echo substr($message, -5) . PHP_EOL;
-//後ろから6文字目から1文字取得
-echo substr($message, -6, 1) . PHP_EOL;
-
-//マルチバイト
-$address = "東京都新宿区";
-echo mb_substr($address, 3) . PHP_EOL;
-echo mb_substr($address, 0, 3) . PHP_EOL;
-echo mb_substr($address, -3) . PHP_EOL;
-
-//文字列置換
-$address = "東京都新宿区";
-$address = str_replace('新宿', '渋谷', $address);
-echo $address . PHP_EOL;
-
-//is_null
-$value = "";
-if (is_null($value)) {
-    echo "NULL です。";
-} else {
-    echo $value;
-}
-echo PHP_EOL;
-
-//NULL
-$value = null;
-if (is_null($value)) {
-    echo "NULL です。";
-} else {
-    echo $value;
-}
-echo PHP_EOL;
-
-//isset
-$value = "";
-if (isset($value)) {
-    echo $value;
-} else {
-    echo "エラー";
-}
-echo PHP_EOL;
-
-// 未定義の場合は PHP エラー
-// if (is_null($price)) {
-//     echo "NULL です。";
-// } else {
-//     echo $price;
-// }
-// echo PHP_EOL;
-
-if (isset($price)) {
-    echo $price;
-} else {
-    echo "エラー";
-}
-echo PHP_EOL;
-
-//empty
-//string
-$value = "";
-if (empty($value)) {
-    echo "データを入力してください" . PHP_EOL;
+function calculate($x)
+{
+    $y = $x + 5;
+    return $y;
 }
 
-//boolean
-$value = false;
-if (empty($value)) {
-    echo "データを入力してください" . PHP_EOL;
+$answer = calculate(2);
+
+//totalPrice()
+function totalPrice($price, $amount)
+{
+    $tax = 1.1;
+    $total_price = $price * $amount * $tax;
+    return $total_price;
 }
 
-//boolean
-$value = 0;
-if (empty($value)) {
-    echo "データを入力してください" . PHP_EOL;
+$total_price = totalPrice(200, 5);
+
+//calcultePoint
+function calculatePoint($price, $rate = 0.01)
+{
+    $point = $price * $rate;
+    return $point;
 }
 
-//array
-$value =[];
-if (empty($value)) {
-    echo "データを入力してください" . PHP_EOL;
+$point1 = calculatePoint($total_price);
+$point2 = calculatePoint($total_price, 0.05);
+
+//buyMessage()
+function buy(string $item_name, int $price, float $tax_rate = 0.1)
+{
+    $tax = $price * $tax_rate;
+    $message = "{$item_name}の消費税は{$tax}円です。";
+    return $message;
+}
+$message = buy('紅茶', 150);
+
+
+//移動メッセージ
+function move($character_name, $method)
+{
+    if (empty($method)) {
+        return "{$character_name}は家にいます";
+    } else {
+        return "{$character_name}が{$method}で移動しています";
+    }
 }
 
-//null
-$value = null;
-if (empty($value)) {
-    echo "データを入力してください" . PHP_EOL;
-}
-
-// undefined
-if (empty($price)) {
-    echo "データを入力してください" . PHP_EOL;
+//移動手段
+function moveMethod($distance, $is_rain = false)
+{
+    if ($is_rain) return;
+    $method = "";
+    if ($distance < 1) {
+        $method = '徒歩';
+    } else if ($distance >= 1 && $distance < 5) {
+        $method = '自転車';
+    } else {
+        $method = '電車';
+    }
+    return $method;
 }
 
 
-//str_replace()
-$message = "明日は雨です";
-$message = str_replace("雨", "晴れ", $message);
-echo $message . PHP_EOL;
+define('ADMIN_ID', 'admin');
+define('ADMIN_PW', 'admin1234');
 
-//
-$user_name = "";
-if (empty($user_name)) {
-    $message = "ユーザ名を入力してください";
+function auth($login_name, $password) {
+    if (empty($login_name)) return 'ログイン名を入力してください。';
+    if (empty($password)) return 'パスワードを入力してください。';
+    if ($login_name == ADMIN_ID && $password == ADMIN_PW) {
+        return '管理者ログイン成功！';
+    } else {
+        return 'ログイン名またはパスワードが間違っています。';
+    }
 }
-echo $message;
-echo PHP_EOL;
 
-//is_numeric
-$number = 10;
-$string = "東京";
+$login_name = 'admin';
+$password = '';
+$message_1 = auth($login_name, $password);
 
-//is_numeric
-$number = 1;
-$number = 1.5;
-// $number = true;
-// $number = "";
-// $number = "東京";
-// $number = "1";
-if (is_numeric($number)) {
-    echo "数値です" . PHP_EOL;
-}
-if (is_int($number)) {
-    echo "整数です" . PHP_EOL;
-}
-if (is_float($number)) {
-    echo "小数です" . PHP_EOL;
-}
-if (is_string($number)) {
-    echo "文字列です" . PHP_EOL;
-}
-if (is_bool($number)) {
-    echo "論理型です" . PHP_EOL;
-}
+$login_name = 'admin';
+$password = '1234';
+$message_2 = auth($login_name, $password);
+
+$login_name = 'admin';
+$password = 'admin1234';
+$message_3 = auth($login_name, $password);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>答え</h2>
+    <p><?= $answer ?></p>
+
+    <h2>合計金額</h2>
+    <p><?= $total_price ?>円</p>
+
+    <h2>ポイント</h2>
+    <p><?= $point1 ?>pt</p>
+    <p><?= $point2 ?>pt</p>
+
+    <h2>購入メッセージ</h2>
+    <p><?= $message ?></p>
+
+    <h2>移動</h2>
+    <p><?= move("イヌ", moveMethod(0.5)) ?></p>
+    <p><?= move("ネコ", moveMethod(3, true)) ?></p>
+    <p><?= move("キリン", moveMethod(5, false)) ?></p>
+
+    <h2>移動手段</h2>
+    <p><?= moveMethod(0.5) ?></p>
+    <p><?= moveMethod(3, true) ?></p>
+    <p><?= moveMethod(5, false) ?></p>
+
+    <div>
+        <?php
+        function say($message)
+        {
+            return $message;
+        }
+        $result = say("こんにちわ");
+
+        //Pay
+        function pay($type)
+        {
+            return "{$type}Pay";
+        }
+
+        function showMessage($last_name, $first_name, $message = 'こんにちわ！')
+        {
+            $message = "{$last_name}　{$first_name}さん、{$message}";
+            echo $message, PHP_EOL;
+        }
+
+        $last_name = '東京';
+        $first_name = '一郎';
+        showMessage($last_name, $first_name);
+        showMessage($last_name, $first_name, 'さようなら！');
+        ?>
+    </div>
+        
+    <h2>Pay</h2>
+    <p><?= pay('LINE') ?></p>
+    <p><?= pay('AU') ?></p>
+    <p><?= pay('Pay') ?></p>
+
+    <h2>認証</h2>
+    <p><?= $message_1 ?></p>
+    <p><?= $message_2 ?></p>
+    <p><?= $message_3 ?></p>
+</body>
+
+</html>

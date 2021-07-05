@@ -1,5 +1,4 @@
 <?php
-
 $character = [
     'id' => 1,
     'name' => 'ヒーロー',
@@ -11,7 +10,6 @@ $character = [
     'exp' => 0,
 ];
 var_dump($character);
-
 
 echo $character['id'];
 echo PHP_EOL;
@@ -54,3 +52,20 @@ $rows = [
     [68, 88, 72,],
 ];
 var_dump($rows);
+
+$cols = $rows[0];
+var_dump($cols);
+
+$data = $cols[1];
+echo $data;
+echo PHP_EOL;
+
+$data = $rows[1][2];
+echo $data;
+echo PHP_EOL;
+
+$users = [
+    [ 'id' => 1, 'name' => 'User1', 'email' => 'user1@example.com', 'tel' => '03-1111-2222' ],
+    [ 'id' => 2, 'name' => 'User2', 'email' => 'user2@example.com', 'tel' => '090-3333-5555' ],
+    [ 'id' => 3, 'name' => 'User3', 'email' => 'user3@example.com', 'tel' => '050-1234-5678' ],
+];

