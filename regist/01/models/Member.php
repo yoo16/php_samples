@@ -17,7 +17,7 @@ class Member
     public $errors = [];
 
     //csv
-    public $csv_path = './data/user.csv';
+    public $csv_path = './data/users.csv';
 
     /**
      * データバインド（$value に一括設定）

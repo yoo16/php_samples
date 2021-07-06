@@ -1,13 +1,27 @@
 <?php
+define('CSV_PATH', 'data/users.csv');
 
 if (!empty($_POST)) {
-    $csv_path = 'data/users.csv';
-    //CSVファイルを追記モードで開く
-    $file = fopen($csv_path, 'a');
-    //ロック
+    insert($_POST);
+}
+
+function initCSV()
+{
+    $file = fopen(CSV_PATH, 'a+');
     flock($file, LOCK_EX);
-    //CSV書き込み
-    fputcsv($file, $_POST);
+    if (!fgets($file)) {
+        $columns = ['name', 'email', 'password'];
+        fputcsv($file, $columns);
+    }
+    fclose($file);
+}
+
+function insert($posts)
+{
+    initCSV();
+    $file = fopen(CSV_PATH, 'a');
+    flock($file, LOCK_EX);
+    fputcsv($file, $posts);
     fclose($file);
 }
 
