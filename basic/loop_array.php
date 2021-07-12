@@ -1,104 +1,142 @@
 <?php
-
-/**
- * 1 から 100 までの数字を順に表示
- */
-for ($i = 0; $i <= 100; $i++) {
-    echo $i;
-    //01234....
-}
-echo PHP_EOL;
-
-
-echo 'for のネスト' . PHP_EOL;
-for ($i = 1; $i <= 10; $i++) {
-    for ($j = 1; $j <= 10; $j++) {
-        echo "({$i}, {$j})";
-    }
-    echo PHP_EOL;
-}
-
-/** 
- * count() を利用する
- */
-$years = [2020, 2019, 2018, 2017];
-for ($i = 0; $i < count($years); $i++) {
-    echo $years[$i];
-    echo PHP_EOL;
-}
-
 $years = range(2020, 2017);
-for ($i = 0; $i < count($years); $i++) {
-    echo $years[$i];
-    echo PHP_EOL;
-}
-
-/** 
- * 配列データの中身を表示する
- */
-$drinks = ['ミネラルウォーター', 'お茶', '紅茶', 'コーラ', '炭酸水'];
-foreach ($drinks as $drink) {
-    echo $drink;
-    echo PHP_EOL;
-}
-
-/** 
- * 1900年から今年までのループ
- */
-foreach (range(1900, date('Y')) as $year) {
-    echo $year;
-    echo PHP_EOL;
-}
-echo PHP_EOL;
-
-/**
- * 連想配列のループ
- */
+$years = range(date('Y'), 2017);
+$drinks = ['コーヒー', '紅茶', 'ほうじ茶'];
 $user = [
-    "name" => "A",
-    "gender" => "male",
-    "age" => 21,
+    'name' => '東京　一郎',
+    'gender' => 'male',
+    'age' => 21,
 ];
 
-foreach ($user as $key => $value) {
-    echo "{$key}:{$value}";
-    echo PHP_EOL;
-}
-
-
-/**
- * while
- */
-echo 'while(): 前判定' . PHP_EOL;
-$i = 0;
-while ($i < 10) {
-    echo $i . PHP_EOL;
-    $i++;
-}
-echo PHP_EOL;
-
-/**
- * do while
- */
-echo 'do while(): 後判定' . PHP_EOL;
-$i = 0;
-do {
-    echo $i . PHP_EOL;
-    $i++;
-} while ($i < 10);
-
-echo '1 から 1000 の数のうち 17の倍数をすべて表示する' . PHP_EOL;
-$i = 1;
-while ($i <= 1000) {
-    if (($i % 17) == 0) {
-        echo $i . PHP_EOL;
-    }
-    $i++;
-}
 
 //glob
 foreach (glob("./*") as $file) {
-    var_dump($file);
-    $files[] = $file;
+    $all_files[] = $file;
 }
-var_dump($files);
+
+foreach (glob("./*.php") as $file) {
+    $php_files[] = $file;
+}
+
+//items
+$items = [
+    [
+        'id' => 1,
+        'name' => 'コーヒー',
+        'price' => 120,
+        'is_sale' => true,
+    ],
+    [
+        'id' => 2,
+        'name' => '紅茶',
+        'price' => 150,
+        'is_sale' => false,
+    ],
+    [
+        'id' => 3,
+        'name' => 'ほうじ茶',
+        'price' => 130,
+        'is_sale' => false,
+    ],
+    [
+        'id' => 4,
+        'name' => '炭酸水',
+        'price' => 80,
+        'is_sale' => true,
+    ],
+    [
+        'id' => 5,
+        'name' => 'オレンジジュース',
+        'price' => 150,
+        'is_sale' => false,
+    ],
+];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h2>年(for)</h2>
+        <?php
+        for ($i = 0; $i < count($years); $i++) {
+            echo "{$years[$i]}年";
+            echo "<br>";
+        }
+        ?>
+
+        <h2>年(foreach)</h2>
+        <?php
+        foreach ($years as $year) {
+            echo "{$year}年";
+            echo "<br>";
+        }
+        ?>
+
+        <h2>ドリンクメニュー</h2>
+        <ul>
+            <?php foreach ($drinks as $drink) : ?>
+                <li><?= $drink ?></li>
+            <?php endforeach ?>
+        </ul>
+
+        <h2>ユーザデータ</h2>
+        <dl>
+            <?php foreach ($user as $key => $value) : ?>
+                <dt><?= $key ?></dt>
+                <dd><?= $value ?></dd>
+            <?php endforeach ?>
+        </dl>
+
+        <h2>プルダウン</h2>
+        <select name="year">
+            <?php foreach ($years as $year) : ?>
+                <option value="<?= $year ?>"><?= $year ?>年</option>
+            <?php endforeach ?>
+        </select>
+
+        <h2>ファイルリスト</h2>
+        <ul>
+            <?php foreach ($all_files as $file) : ?>
+                <li><?= $file ?></li>
+            <?php endforeach ?>
+        </ul>
+
+        <h2>ファイルリスト(PHP)</h2>
+        <ul>
+            <?php foreach ($php_files as $file) : ?>
+                <li><?= $file ?></li>
+            <?php endforeach ?>
+        </ul>
+
+        <h2>商品一覧</h2>
+        <div class="table-responsive">
+            <table class="table table-hover">
+
+                <?php foreach ($items as $item) : ?>
+                    <tr>
+                        <td><?= $item['id'] ?></td>
+                        <td><?= $item['name'] ?></td>
+                        <td class="text-end"><?= $item['price'] ?></td>
+                        <td>
+                            <?php if ($item['is_sale']) : ?>
+                                <span class="badge bg-danger">セール中</span>
+                            <?php endif ?>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

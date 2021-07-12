@@ -1,8 +1,6 @@
 <?php
-
 define('CSV_PATH', 'data/users.csv');
 
-$genders = ['male' => '男性', 'female' => '女性'];
 $users = loadUsers();
 
 function loadUsers()
@@ -12,14 +10,15 @@ function loadUsers()
     $file = fopen(CSV_PATH, 'r');
     flock($file, LOCK_EX);
     if ($columns = fgetcsv($file)) {
-        while ($line = fgetcsv($file)) {
+        while ($array = fgetcsv($file)) {
             foreach ($columns as $index => $column) {
-                $user[$column] = $line[$index];
+                $user[$column] = $array[$index];
             }
             $users[] = $user;
         }
     }
     fclose($file);
+    return $users;
 }
 ?>
 
@@ -40,24 +39,16 @@ function loadUsers()
         <table class="table">
             <tr>
                 <th>氏名</th>
-                <th>ふりがな</th>
                 <th>メールアドレス</th>
-                <th>電話番号</th>
-                <th>誕生日年</th>
-                <th>性別</th>
             </tr>
-            <? if ($users) : ?>
-                <? foreach ($users as $user) : ?>
+            <?php if ($users) : ?>
+                <?php foreach ($users as $user) : ?>
                     <tr>
                         <td><?= $user['name'] ?></td>
-                        <td><?= $user['kana'] ?></td>
                         <td><?= $user['email'] ?></td>
-                        <td><?= $user['tel'] ?></td>
-                        <td><?= $user['year'] ?>年</td>
-                        <td><?= $genders[$user['gender']] ?></td>
                     </tr>
-                <? endforeach ?>
-            <? endif ?>
+                <?php endforeach ?>
+            <?php endif ?>
         </table>
     </div>
 </body>
