@@ -1,5 +1,5 @@
 <?php
-$items = ['ミネラルウォーター', 'コーヒー', '炭酸水', '紅茶', 'ほうじ茶'];
+$items = ['コーヒー', '紅茶', 'ほうじ茶'];
 $message = '商品名を入力してください';
 if (!empty($_GET) && !empty($_GET['keyword'])) {
     if (in_array($_GET['keyword'], $items)) {
