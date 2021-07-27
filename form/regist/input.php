@@ -11,13 +11,11 @@ $member = [
     'tel' => '',
     'year' => 1980,
     'gender' => 'male',
-    'q1' => '',
 ];
 //セッション取得
 if (isset($_SESSION['member'])) {
     $member = $_SESSION['member'];
 }
-// var_dump($member);
 
 function checked($value, $target)
 {
@@ -75,25 +73,37 @@ function selected($value, $target)
 
             <div class="form-group">
                 <label>誕生日年</label>
-                <select name="year" class="form-control">
-                    <option value="" name="year">--年--</option>
-                    <?php foreach (range(date('Y'), 1900) as $year) : ?>
-                        <option value="<?= $year ?>" name="year" <?= selected($member['year'], $year) ?>><?= $year ?>年</option>
-                    <?php endforeach ?>
-                </select>
+                <div class="form-inline">
+                    <select name="year" class="form-control col-2">
+                        <option value="" name="year">--年--</option>
+                        <?php foreach (range(date('Y'), 1900) as $year) : ?>
+                            <option value="<?= $year ?>" name="year" <?= selected($member['year'], $year) ?>><?= $year ?></option>
+                        <?php endforeach ?>
+                    </select>
+                    /
+                    <select name="month" class="form-control col-2">
+                        <option value="" name="month">--月--</option>
+                        <?php foreach (range(1, 12) as $month) : ?>
+                            <option value="<?= $month ?>" name="month" <?= selected($member['month'], $month) ?>><?= $month ?></option>
+                        <?php endforeach ?>
+                    </select>
+                    /
+                    <select name="day" class="form-control col-2">
+                        <option value="" name="day">--日--</option>
+                        <?php foreach (range(1, 31) as $day) : ?>
+                            <option value="<?= $day ?>" name="day" <?= selected($member['day'], $day) ?>><?= $day ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
             </div>
 
             <div class="form-group">
                 <label>性別</label>
                 <div>
-                    <label for="male">
-                        <input id="male" type="radio" name="gender" value="male" <?= checked($member['gender'], 'male') ?>>
-                        男性
-                    </label>
-                    <label for="female">
-                        <input id="female" type="radio" name="gender" value="female" <?= checked($member['gender'], 'female') ?>>
-                        女性
-                    </label>
+                    <input id="gender_male" type="radio" name="gender" value="male" <?= checked($member['gender'], 'male') ?>>
+                    <label for="gender_male">男性</label>
+                    <input id="gender_female" type="radio" name="gender" value="female" <?= checked($member['gender'], 'female') ?>>
+                    <label for="gender_female">女性</label>
                 </div>
             </div>
 
