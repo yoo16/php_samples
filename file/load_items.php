@@ -1,33 +1,37 @@
 <?php
 //お知らせ
-$informations = [];
-$file_path = 'data/information.txt';
-if (file_exists($file_path)) {
+$informations = loadInformations();
+$items = loadItems();
+
+function loadInformations()
+{
+    $informations = [];
+    $file_path = 'data/information.txt';
+    if (!file_exists($file_path)) return;
+
     $file = fopen($file_path, 'r');
-    while ($line = fgets($file, 4096)) {
+    while ($line = fgets($file)) {
         $informations[] = $line;
     }
-    fclose($file);
+    return $informations;
 }
 
-//商品
-$items = [];
-$file_path = 'data/items.csv';
-if (file_exists($file_path)) {
+function loadItems()
+{
+    $file_path = 'data/items.csv';
+    if (!file_exists($file_path)) return;
+
+    $items = [];
     $file = fopen($file_path, 'r');
-    //1行目データカラムの読み込み
-    $columns = fgetcsv($file, 4096);
-    // var_dump($columns);
-    //実データの読み込み
-    while ($data = fgetcsv($file, 4096)) {
-        //データカラムを使って連想配列を作成
+    $columns = fgetcsv($file);
+    while ($data = fgetcsv($file)) {
         foreach ($columns as $index => $column) {
             $item[$column] = $data[$index];
         }
         $items[] = $item;
     }
-    // var_dump($items);
     fclose($file);
+    return $items;
 }
 ?>
 <!DOCTYPE html>

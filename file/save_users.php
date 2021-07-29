@@ -1,24 +1,24 @@
 <?php
 define('CSV_PATH', 'data/users.csv');
+$columns = ['name', 'email', 'password'];
 
 if (!empty($_POST)) {
+    initCSV($columns);
     insert($_POST);
 }
 
-function initCSV()
+function initCSV($data)
 {
     $file = fopen(CSV_PATH, 'a+');
     flock($file, LOCK_EX);
     if (!fgets($file)) {
-        $columns = ['name', 'email', 'password'];
-        fputcsv($file, $columns);
+        fputcsv($file, $data);
     }
     fclose($file);
 }
 
 function insert($posts)
 {
-    initCSV();
     $file = fopen(CSV_PATH, 'a');
     flock($file, LOCK_EX);
     fputcsv($file, $posts);
