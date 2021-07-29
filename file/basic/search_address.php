@@ -1,9 +1,4 @@
 <?php
-$prefecture = '';
-$city = '';
-$town = '';
-$zip_code = '';
-
 if (isset($_GET['zip_code'])) {
     $zip_code = $_GET['zip_code'];
     $url = "http://zipcloud.ibsnet.co.jp/api/search?zipcode={$zip_code}";
@@ -31,7 +26,7 @@ if (isset($_GET['zip_code'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -43,11 +38,11 @@ if (isset($_GET['zip_code'])) {
                 <button class="btn btn-primary">検索</button>
             </div>
             <h3 class="h3">都道府県</h3>
-            <p><?= $prefecture ?></p>
+            <p><?= @$prefecture ?></p>
             <h3>市区町村</h3>
-            <p><?= $city ?></p>
+            <p><?= @$city ?></p>
             <h3>町名</h3>
-            <p><?= $town ?></p>
+            <p><?= @$town ?></p>
         </form>
     </div>
 </body>
