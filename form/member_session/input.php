@@ -1,4 +1,8 @@
 <?php
+session_start();
+$user = ['email' => '', 'password' => ''];
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+if (isset($_SESSION['errors'])) $errors = $_SESSION['errors'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -18,13 +22,15 @@
         <form action="confirm.php" method="post">
             <div class="mb-3">
                 <label for="input_email" class="form-label">Email</label>
-                <input type="email" name="email"
+                <input type="email" name="email" value="<?= $user['email'] ?>"
                  class="form-control" id="input_email">
+                 <p><?= @$errors['email'] ?></p>
             </div>
             <div class="mb-3">
                 <label for="input_password" class="form-label">Password</label>
                 <input type="password" name="password"
                  class="form-control" id="input_password">
+                 <p><?= @$errors['password'] ?></p>
             </div>
             <button class="btn btn-primary">確認</button>
         </form>

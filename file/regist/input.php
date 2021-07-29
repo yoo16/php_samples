@@ -2,9 +2,12 @@
 define('CSV_PATH', 'data/users.csv');
 $columns = ['name', 'email', 'password'];
 
-if (!empty($_POST)) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     initCSV($columns);
-    // $errors = insert($_POST);
+    $errors = validate($_POST);
+    if (!$errors) {
+        insert($_POST);
+    }
 }
 
 function initCSV($data)
@@ -14,14 +17,12 @@ function initCSV($data)
     if (!fgets($file)) {
         fputcsv($file, $data);
     }
+    flock($file, LOCK_UN);
     fclose($file);
 }
 
 function insert($data)
 {
-    $errors = validate($data);
-    if ($errors) return $errors;
-
     $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
     $file = fopen(CSV_PATH, 'a');
     flock($file, LOCK_EX);
