@@ -1,9 +1,9 @@
 <?php
 class User
 {
-    public $last_name;
-    public $first_name;
+    public $name;
     public $email;
+    public $password;
 
     public function speak($message)
     {

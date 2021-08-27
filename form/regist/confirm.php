@@ -2,23 +2,19 @@
 session_start();
 session_regenerate_id(true);
 
-$member = [];
-if (!empty($_POST)) {
-    $member = $_POST;
-    $member = checkSpace($_POST);
-    $_SESSION['member'] = $member;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $_SESSION['member'] = $member = $_POST;
+    // $member = checkSpace($member);
+    $errors = validate($member);
+    if ($errors) {
+        $_SESSION['errors'] = $errors;
+        header('Location: input.php');
+    }
+} else {
+    header('Location: input.php');
 }
 
 $genders = ['male' => '男性', 'female' => '女性'];
-$q1 = [
-    'internet' => 'インターネット',
-    'tv' => 'TV',
-    'mail' => 'メール',
-    'sns' => 'SNS',
-    'other' => 'その他',
-];
-
-$errors = validate($member);
 
 function checkSpace($member)
 {
@@ -93,15 +89,6 @@ function validateMatch($pattern, $value, $message)
 <body>
     <div class="container">
         <h1 class="h1">会員登録フォーム</h1>
-        <?php if ($errors) : ?>
-            <div class="alert alert-danger">
-                <?php foreach ($errors as $error) : ?>
-                    <ul>
-                        <li><?= $error ?></li>
-                    </ul>
-                <?php endforeach ?>
-            </div>
-        <?php endif ?>
         <form action="result.php" method="post">
             <div class="form-group">
                 <label class="col-sm-2 col-form-label">氏名</label>
@@ -129,15 +116,6 @@ function validateMatch($pattern, $value, $message)
                 <label class="col-sm-2 col-form-label">性別</label>
                 <?php if ($member['gender']) : ?>
                     <?= $genders[$member['gender']] ?>
-                <?php endif ?>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-2 col-form-label">Q1</label>
-                <?php if ($member['q1']) : ?>
-                <?php foreach ($member['q1'] as $value) : ?>
-                    <?= $q1[$value] ?>
-                <?php endforeach ?>
                 <?php endif ?>
             </div>
 

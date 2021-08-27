@@ -1,24 +1,9 @@
 <?php
-//お知らせ
-$informations = loadInformations();
-$items = loadItems();
+$file_path = 'data/items.csv';
+$items = loadCSV($file_path);
 
-function loadInformations()
+function loadCSV($file_path)
 {
-    $informations = [];
-    $file_path = 'data/information.txt';
-    if (!file_exists($file_path)) return;
-
-    $file = fopen($file_path, 'r');
-    while ($line = fgets($file)) {
-        $informations[] = $line;
-    }
-    return $informations;
-}
-
-function loadItems()
-{
-    $file_path = 'data/items.csv';
     if (!file_exists($file_path)) return;
 
     $items = [];
@@ -47,19 +32,14 @@ function loadItems()
 
 <body>
     <div class="container">
-        <h3 class="h3">お知らせ</h3>
-        <dl>
-            <?php foreach ($informations as $information) : ?>
-                <dd><?= $information ?></dd>
-            <?php endforeach ?>
-        </dl>
-
         <h3 class="h3">商品一覧</h3>
         <dl>
+            <?php if ($items) : ?>
             <?php foreach ($items as $item) : ?>
                 <dt><?= $item['name'] ?></dt>
                 <dd><?= $item['price'] ?>円</dd>
             <?php endforeach ?>
+            <?php endif ?>
         </dl>
     </div>
 </body>
