@@ -1,13 +1,12 @@
 <?php
-class Cat
+require_once 'Animal.php';
+class Cat extends Animal
 {
     public $sound = 'にゃー！';
 
-    function makeSound()
+    function escape()
     {
-        echo $this->sound;
+        echo '逃げる';
+        echo PHP_EOL;
     }
 }
-
-$cat = new Cat();
-$cat->makeSound();

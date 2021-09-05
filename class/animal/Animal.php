@@ -11,7 +11,7 @@ class Animal
     }
 
     //鳴く
-    public function makeSound()
+    public function cry()
     {
         echo $this->sound;
         echo PHP_EOL;
