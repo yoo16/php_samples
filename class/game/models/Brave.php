@@ -3,5 +3,5 @@ require_once 'Character.php';
 
 class Brave extends Character
 {
-    public $job = '勇者';
+    public string $job = '勇者';
 }

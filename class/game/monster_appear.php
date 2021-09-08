@@ -1,9 +1,22 @@
 <?php
-require_once 'Monster.php';
+require_once 'monsters.php';
 
-$monster = new Monster();
-$monster->name = 'スライム';
-$monster->hp = 5;
 $monster->appear();
+$messages[] = $monster->message;
+?>
 
-echo $monster->message;
+<!DOCTYPE html>
+<html lang="en">
+
+<?php include('components/head.php') ?>
+
+<body>
+    <div class="container">
+        <p class="text-center">
+            <img src="<?= $monster->image ?>" alt="">
+        </p>
+        <?php include('components/message.php') ?>
+    </div>
+</body>
+
+</html>

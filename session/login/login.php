@@ -1,6 +1,86 @@
 <?php
 session_start();
-if (isset($_SESSION['errors'])) $errors = $_SESSION['errors'];
+
+if (isset($_SESSION['errors'])) {
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']);
+}
+if (isset($_SESSION['posts'])) {
+    $posts = $_SESSION['posts'];
+}
+
+$user = [];
+//POSTデータチェック
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $posts = check($_POST);
+    $_SESSION['posts'] = $posts;
+    if ($errors = validate($posts)) {
+        $_SESSION['errors'] = $errors;
+        header('Location: login.php');
+        exit;
+    } else {
+        $user = auth($posts['email'], $posts['password']);
+        if ($user) {
+            $_SESSION['auth_user'] = $user;
+            unset($_SESSION['posts']);
+            header('Location: user/');
+            exit;
+        }
+    }
+}
+
+//ユーザ一覧
+function fetchUsers()
+{
+    $password = password_hash('password', PASSWORD_BCRYPT);
+    // $password = 'password';
+    $users = [
+        [
+            'id' => 1,
+            'name' => '東京　太郎',
+            'email' => 'tokyo@test.com',
+            'password' => $password,
+        ],
+        [
+            'id' => 2,
+            'name' => '横浜　かずこ',
+            'email' => 'yokohama@test.com',
+            'password' => $password,
+        ],
+    ];
+    return $users;
+}
+
+//ユーザ認証
+function auth($email, $password)
+{
+    if (!$email) return;
+    if (!$password) return;
+    foreach (fetchUsers() as $user) {
+        if ($user['email'] == $email) {
+            if (password_verify($password, $user['password'])) {
+                return $user;
+            }
+        }
+    }
+}
+
+function check($posts)
+{
+    if (empty($posts)) return;
+    foreach ($posts as $column => $post) {
+        $posts[$column] = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
+    }
+    return $posts;
+}
+
+function validate($data)
+{
+    $errors = [];
+    if (empty($data['email'])) $errors['email'] = 'Emailを入力してください。';
+    if (empty($data['password'])) $errors['password'] = 'パスワードを入力してください。';
+    return $errors;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -15,9 +95,9 @@ if (isset($_SESSION['errors'])) $errors = $_SESSION['errors'];
 <body>
     <div class="container">
         <h2 class="h2">ログイン</h2>
-        <form action="user/index.php" method="post">
+        <form action="login.php" method="post">
             <div class="form-floating mb-3">
-                <input class="form-control" type="email" name="email">
+                <input class="form-control" type="email" name="email" value="<?= @$posts['email'] ?>">
                 <label for="">メールアドレス</label>
                 <p class="text-danger"><?= @$errors['email'] ?></p>
             </div>

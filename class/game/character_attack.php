@@ -1,10 +1,14 @@
 <?php
+require_once 'characters.php';
 require_once 'monsters.php';
 
 $monster->appear();
 $messages[] = $monster->message;
 
-$monster->damaged(2);
+$attack_point = $brave->attack();
+$messages[] = $brave->message;
+
+$monster->damaged($attack_point);
 $messages[] = $monster->message;
 ?>
 
@@ -15,6 +19,7 @@ $messages[] = $monster->message;
 
 <body>
     <div class="container">
+        <?php include('components/status.php') ?>
         <p class="text-center">
             <img src="<?= $monster->image ?>" alt="">
         </p>
