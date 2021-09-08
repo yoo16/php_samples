@@ -29,8 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+//ユーザ一検索（Email）
+function findByEmail($email)
+{
+    foreach (all() as $value) {
+        if ($value['email'] == $email) {
+            return $value;
+        }
+    }
+}
+
 //ユーザ一覧
-function fetchUsers()
+function all()
 {
     $password = password_hash('password', PASSWORD_BCRYPT);
     // $password = 'password';
