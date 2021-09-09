@@ -4,6 +4,7 @@ session_start();
 //ユーザがいなければログインページにリダイレクト
 if (empty($_SESSION['auth_user'])) {
     header('Location: ../login.php');
+    exit;
 }
 $user = $_SESSION['auth_user'];
 ?>

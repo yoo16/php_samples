@@ -66,7 +66,7 @@ function auth($email, $password)
 {
     if (!$email) return;
     if (!$password) return;
-    foreach (fetchUsers() as $user) {
+    foreach (all() as $user) {
         if ($user['email'] == $email) {
             if (password_verify($password, $user['password'])) {
                 return $user;
