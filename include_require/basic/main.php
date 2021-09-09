@@ -1,6 +1,7 @@
 <?php
 require_once 'functions.php';
 
+$title = 'MyShop';
 $price = 300;
 $amount = 5;
 ?>
