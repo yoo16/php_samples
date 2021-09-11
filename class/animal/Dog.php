@@ -7,7 +7,7 @@ class Dog extends Animal
 
     function follow()
     {
-        echo '従う';
+        echo "「{$this->name}」が寄ってきた！";
         echo PHP_EOL;
     }
 

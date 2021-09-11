@@ -6,7 +6,7 @@ class Cat extends Animal
 
     function escape()
     {
-        echo '逃げる';
+        echo "「{$this->name}」が逃げた！";
         echo PHP_EOL;
     }
 }

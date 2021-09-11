@@ -1,19 +1,29 @@
 <?php
 class Animal
 {
-    public $name;   //動物の名称
-    public $sound;  //動物の鳴き声
+    public $name;
+    public $sound;
 
-    //コンストラクタ
-    function __construct($name)
+    public function __construct($name)
     {
         $this->name = $name;
     }
-
-    //鳴く
+    
     public function cry()
     {
         echo $this->sound;
+        echo PHP_EOL;
+    }
+
+    public function speak($message)
+    {
+        echo $message;
+        echo PHP_EOL;
+    }
+
+    public function  run()
+    {
+        echo "「{$this->name}」が走った。";
         echo PHP_EOL;
     }
 }
