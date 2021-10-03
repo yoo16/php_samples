@@ -2,15 +2,14 @@
 session_start();
 session_regenerate_id(true);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $_SESSION['member'] = $member = $_POST;
-    // $member = checkSpace($member);
-    $errors = validate($member);
-    if ($errors) {
-        $_SESSION['errors'] = $errors;
-        header('Location: input.php');
-    }
-} else {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    exit;
+}
+$_SESSION['member'] = $member = $_POST;
+// $member = checkSpace($member);
+$errors = validate($member);
+if ($errors) {
+    $_SESSION['errors'] = $errors;
     header('Location: input.php');
 }
 
@@ -81,9 +80,10 @@ function validateMatch($pattern, $value, $message)
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>会員登録</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body>
@@ -118,7 +118,6 @@ function validateMatch($pattern, $value, $message)
                     <?= $genders[$member['gender']] ?>
                 <?php endif ?>
             </div>
-
             <div>
                 <a href="input.php" class="btn btn-outline-primary">戻る</a>
                 <?php if (empty($errors)) : ?>

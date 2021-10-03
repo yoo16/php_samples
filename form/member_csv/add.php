@@ -3,15 +3,18 @@ session_start();
 define('CSV_PATH', 'data/users.csv');
 $columns = ['name', 'email', 'password'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user'])) {
-    initCSV($columns);
-    insert($_SESSION['user'], $columns);
-
-    unset($_SESSION['user']);
-    unset($_SESSION['errors']);
-} else {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    exit;
+}
+if (empty($_SESSION['user'])) {
     header('Location: input.php');
 }
+
+initCSV($columns);
+insert($_SESSION['user'], $columns);
+
+unset($_SESSION['user']);
+unset($_SESSION['errors']);
 
 function initCSV($data)
 {
@@ -26,9 +29,6 @@ function initCSV($data)
 
 function insert($data, $columns)
 {
-    foreach ($columns as $column) {
-        $data[$column] = htmlspecialchars($data[$column]);
-    }
     $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
 
     $file = fopen(CSV_PATH, 'a');

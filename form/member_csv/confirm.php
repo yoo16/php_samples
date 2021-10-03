@@ -1,15 +1,30 @@
 <?php
 session_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user = $_POST;
-    $errors = validate($user);
-
-    $_SESSION['user'] = $user;
-    $_SESSION['errors'] = $errors;
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    exit;
 }
-if (empty($user) || !empty($errors)) {
+
+//サニタイズ
+$posts = check($_POST);
+//バリデーション
+$errors = validate($posts);
+//セッション保存
+$_SESSION['user'] = $user;
+$_SESSION['errors'] = $errors;
+
+if ($errors) {
     header('Location: input.php');
     exit;
+}
+
+function check($data)
+{
+    $columns = ['name', 'email', 'password'];
+    foreach ($columns as $column) {
+        if (isset($data[$column])) {
+            $data[$column] = htmlspecialchars($data[$column]);
+        }
+    }
 }
 
 function validate($user)
@@ -40,7 +55,7 @@ function validate($user)
 
 <body>
     <div class="container">
-        <form action="result.php" method="post">
+        <form action="add.php" method="post">
             <h2 class="h2">会員登録</h2>
             <div class="mb-3">
                 <label class="fw-bold">氏名</label>
