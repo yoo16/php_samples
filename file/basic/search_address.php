@@ -19,7 +19,7 @@ if (isset($_GET['zip_code'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">

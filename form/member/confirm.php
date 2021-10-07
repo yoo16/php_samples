@@ -1,14 +1,13 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    // exit;
+    exit;
 }
 
-$posts = $_POST;
-// $posts = check($_POST);
+$posts = check($_POST);
 $errors = validate($posts);
 if (!empty($errors)) {
-    // header('Location: input.php');
-    // exit;
+    header('Location: input.php');
+    exit;
 }
 
 function check($posts)
