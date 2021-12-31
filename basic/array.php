@@ -34,6 +34,7 @@ $week_index = date('w');
 $kana = ['あ', 'い', 'う', 'え', 'お'];
 rsort($kana);
 
+$items = ['コーヒー', '紅茶', 'ほうじ茶'];
 $index = array_rand($items);
 ?>
 

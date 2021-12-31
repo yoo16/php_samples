@@ -58,7 +58,6 @@ $monster_hp = 10;
 echo $monster_hp;
 echo PHP_EOL;
 
-
 //print
 $monster = "スライム";
 print $monster;
@@ -134,11 +133,11 @@ $character = null;
 var_dump($character);
 
 //callable
-$callback = function($a, $b) {
+$callback = function ($a, $b) {
     return $a + $b;
 };
 $result = call_user_func($callback, 1, 2);
-echo $result.PHP_EOL;
+echo $result . PHP_EOL;
 
 //定数
 define('TAX_RATE', 0.1);
@@ -154,7 +153,7 @@ echo PHP_EOL;
 //文字と数字の連結
 $monster_hp = 10;
 $monster_name = 'スライム';
-$status = $monster_name.'のHPは'.$monster_hp;
+$status = $monster_name . 'のHPは' . $monster_hp;
 var_dump($status);
 echo PHP_EOL;
 

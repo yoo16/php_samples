@@ -136,6 +136,31 @@ echo PHP_EOL;
 
 
 /**
+ * Null合体演算
+ */
+$display_name = ($user_name) ?? '匿名';
+echo $display_name;
+echo PHP_EOL;
+
+$user_name = '東京　太郎';
+$display_name = ($user_name) ?? '匿名';
+echo $display_name;
+echo PHP_EOL;
+
+/**
+ * エルビス演算
+ */
+$price = 0;
+$result = ($price) ?: '';
+echo $result;
+echo PHP_EOL;
+
+$price = 100;
+$result = ($price) ?: '';
+echo $result;
+echo PHP_EOL;
+
+/**
  * インクリメントの検証
  */
 
