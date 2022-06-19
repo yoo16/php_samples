@@ -2,11 +2,14 @@
 class Animal
 {
     public string $name;
+    public string $type;
     public string $crying;
 
-    public function __construct($name = '')
+    public function walk(): void
     {
-        // $this->name = $name;
+        $message = "{$this->name}が歩いた。";
+        echo $message;
+        echo PHP_EOL;
     }
 
     public  function cry(): void
@@ -15,15 +18,10 @@ class Animal
         echo PHP_EOL;
     }
 
-    public function speak($message): void
+    public function escape(): void
     {
+        $message = "{$this->name}が逃げた。";
         echo $message;
-        echo PHP_EOL;
-    }
-
-    public function  run(): void
-    {
-        echo "「{$this->name}」が走った。";
         echo PHP_EOL;
     }
 }
