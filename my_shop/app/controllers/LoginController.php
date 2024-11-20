@@ -17,6 +17,7 @@ class LoginController
                 'errors' => $errors
             ]
         );
+        return;
     }
 
     public function auth()
