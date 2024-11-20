@@ -14,11 +14,14 @@ $topics = $topics->get();
 
 <body>
     <h1>Blog</h1>
-    <a href="input.php">新規投稿</a>
+    <?php if ($topics) : ?>
     <?php foreach ($topics as $topic) : ?>
-        <h2><?= $topic['title'] ?></h2>
-        <p><?= $topic['content'] ?></p>
-    <?php endforeach; ?>
+        <div>
+            <h2><?= $topic['title'] ?></h2>
+            <p><?= $topic['content'] ?></p>
+        </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </body>
 
 </html>
