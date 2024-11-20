@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog JSON</title>
+    <link rel="stylesheet" href="../css/ckeditor.css">
 </head>
 
 <body>

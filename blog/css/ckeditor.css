@@ -1,0 +1,5 @@
+/* CKEditor の高さを変更 */
+.ck-editor__editable {
+    min-height: 400px;
+    /* 必要な高さを指定 */
+}
