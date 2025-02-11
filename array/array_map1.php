@@ -1,6 +1,6 @@
 <?php
-$datas = [50, 30, 15, 25];
-$max = max($datas);
+$array = [50, 30, 15, 25];
+$max = max($array);
 $r = 5;
 
 array_map(function ($number) use ($max, $r) { 
@@ -10,4 +10,4 @@ array_map(function ($number) use ($max, $r) {
     $str .= str_repeat('-', $blank_count);
     echo $str.PHP_EOL;
     return $str;
-}, $datas);
+}, $array);

@@ -5,10 +5,15 @@ class Model
 
     public function __construct()
     {
-        if (!file_exists('db')) {
-            mkdir('db', 0777, true);
+        // プロジェクト直下の 'db' ディレクトリを指定
+        $dbDirectory = __DIR__ . '/../db';
+
+        if (!file_exists($dbDirectory)) {
+            mkdir($dbDirectory, 0777, true);
         }
-        $this->file = 'db/' . $this->file;
+
+        // ファイルパスを指定
+        $this->file = $dbDirectory . '/' . $this->file;
     }
 
     public function bind($data)
